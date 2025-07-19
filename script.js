@@ -46,17 +46,24 @@ function add_task() {
         newTask.append(deletebutton);
         
         checkBox.addEventListener("change", () =>{
-            if (newTask.className == "checked")
+            if (newTask.className == "checked") {
                 newTask.className = "unchecked";
-            else 
+                list.removeChild(newTask);
+                list.prepend(newTask);
+            }            
+            else {
                 newTask.className = "checked";
+                list.removeChild(newTask);
+                list.appendChild(newTask);
+            }
+
         })
 
-        deletebutton.addEventListener("change", () => {
+        deletebutton.addEventListener("click", () => {
             list.removeChild(newTask);
         })
 
-        list.append(newTask);
+        list.prepend(newTask);
     });
 }
 
