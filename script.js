@@ -20,7 +20,7 @@ function add_task() {
     form.append(submit);
     buttons.append(form);
     form.addEventListener("submit", function(event) {
-        event.preventDefault(); // stop page reload
+        event.preventDefault();
         buttons.removeChild(form);
 
         msg = popup.value.trim();
@@ -28,14 +28,31 @@ function add_task() {
         if (!msg) return;
 
         let newTask = document.createElement("li");
+        newTask.className = "unchecked";
 
         let checkBox = document.createElement("input");
         checkBox.type = "checkbox";
+        checkBox.classList = "check";
+
+        let deletebutton = document.createElement("input");
+        deletebutton.type = "button";
+        deletebutton.classList = "delete"
+
+        let msgElement = document.createElement("span");
+        msgElement.innerHTML = msg;
 
         newTask.append(checkBox);
-        newTask.append(msg)
+        newTask.append(msgElement);
+        newTask.append(deletebutton);
         
         checkBox.addEventListener("change", () =>{
+            if (newTask.className == "checked")
+                newTask.className = "unchecked";
+            else 
+                newTask.className = "checked";
+        })
+
+        deletebutton.addEventListener("change", () => {
             list.removeChild(newTask);
         })
 
