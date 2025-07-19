@@ -103,7 +103,7 @@ function add_task() {
                 }
             }
         })
-        if (currentFilter !== "Completed")
+        if (currentFilter == "Completed")
             list.prepend(newTask);
     });
 }
